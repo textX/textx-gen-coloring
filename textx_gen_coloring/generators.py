@@ -1,5 +1,6 @@
 import re
 import string
+from itertools import groupby
 from os.path import abspath, dirname, join
 
 from textx import get_children_of_type, metamodel_for_language
@@ -62,6 +63,9 @@ class _TextmateDefaultGen(_TextmateGen):
     information from grammar.
     """
 
+    SCOPE_KEYWORD = 'support.class'
+    SCOPE_PUNCTUATION = 'constant.language'
+
     def __init__(self, grammar_info):
         super().__init__(grammar_info)
 
@@ -75,10 +79,15 @@ class _TextmateDefaultGen(_TextmateGen):
             else:
                 return "constant.language"
 
-        return [
-            {"match": kwd, "name": _kwd_class(kwd)}
-            for kwd in self.grammar_info.keywords
-        ]
+        matches = []
+        for scope, keywords in groupby(sorted(self.grammar_info.keywords,
+                                              key=_kwd_class), _kwd_class):
+            match = '|'.join(keywords)
+            if scope == self.SCOPE_KEYWORD:
+                match = fr"\\b({match})\\b"
+            matches.append({"match": match, "name": scope})
+
+        return matches
 
 
 def _escape_keyword(keyword):
