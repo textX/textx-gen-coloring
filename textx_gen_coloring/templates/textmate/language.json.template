@@ -1,7 +1,7 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "{{ name }}",
-	"scopeName": "source.{{ name }}",
+	"scopeName": "source.{{ name | lower }}",
 	"patterns": [
         {%- if comment.line != None or (comment.block_start != None and comment.block_end != None) %}
         {
