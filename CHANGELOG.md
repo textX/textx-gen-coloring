@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+## [0.2.0] - 29/04/2025
+
+### Changed
+- Reworked grammar analysis to use installed textX meta-langauge.
+- Make patterns more compact by grouping matches of the same kind.
+- Use pyproject.toml instead of setup.py.
+
+### Fixed
+
+- scope name in lowercase in template for code generation
+
+
 ## [0.1.2] - 12/28/2019
 
 ### Fixed

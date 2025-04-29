@@ -1,0 +1,99 @@
+[project]
+name = "textx-gen-coloring"
+version = "0.2.0"
+description = "A syntax highlight generator for textX languages"
+authors = [
+    {name = "Daniel Elero", email = "danixeee@gmail.com"},
+]
+maintainers = [
+    {name = "Daniel Elero", email = "danixeee@gmail.com"},
+    {name = "Igor R. Dejanović", email = "igor.dejanovic@gmail.com"},
+]
+readme = "README.md"
+license = {text = "MIT"}
+keywords = ["syntax highlighting", "language", "DSL"]
+classifiers = [
+        "Development Status :: 2 - Pre-Alpha",
+        "Intended Audience :: Developers",
+        "Intended Audience :: Information Technology",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3 :: Only",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+]
+
+requires-python = ">=3.5"
+dependencies = [
+    "click",
+    "jinja2",
+    "textx"
+]
+
+[project.urls]
+Homepage = "https://github.com/textX/textx-gen-coloring/"
+Repository = "https://github.com/textX/textx-gen-coloring/"
+Changelog = "https://github.com/textX/textx-gen-coloring/blob/master/CHANGELOG.md"
+
+[build-system]
+build-backend = "flit_core.buildapi"
+requires = ["flit_core >=3.8.0,<4"]
+
+[tool.flit.module]
+name = "textx_gen_coloring"
+
+[tool.flit.sdist]
+exclude = ["**/.*"]
+
+[project.optional-dependencies]
+ci = [
+    "bandit==1.6.2",
+    "pytest==5.3.2",
+    "pytest-cov==2.8.1",
+    "pytest-azurepipelines==0.8.0",
+]
+
+dev = [
+    "bandit==1.6.2",
+    "ruff",
+]
+
+test = [
+    "coverage==5.0.1",
+    "pytest==5.3.2",
+    "pytest-cov==2.8.1"
+]
+
+[project.entry-points.textx_generators]
+textxmate_gen = "textx_gen_coloring:textmate_gen"
+
+[project.entry-points.textx_languages]
+coloring_lang = "textx_gen_coloring:coloring_lang"
+
+[tool.ruff]
+line-length = 90
+indent-width = 4
+
+[tool.ruff.lint]
+# https://docs.astral.sh/ruff/linter/#rule-selection
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+]
